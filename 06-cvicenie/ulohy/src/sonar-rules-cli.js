@@ -26,7 +26,7 @@ const [, ,
   URL = 'https://gazelle.ihe.net/sonar/api/rules/search?languages=js'
 ] = process.argv;
 
-const { doWhilst, parallelLimit, waterfall, asyncify, concat, mapLimit } = require("async");
+const { doWhilst, parallelLimit, waterfall, asyncify, concat } = require("async");
 const debug = require("debug")("");
 const request = require("request")
   .defaults({ json: true });
