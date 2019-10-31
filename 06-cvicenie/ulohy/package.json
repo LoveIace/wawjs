@@ -1,0 +1,24 @@
+{
+  "name": "ulohy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/sonar-rules-cli.js"
+  },
+  "keywords": [],
+  "author": "Tomáš Bedej",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "json": "^9.0.6",
+    "mocha": "^6.2.2"
+  }
+}
