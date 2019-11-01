@@ -32,7 +32,7 @@ const request = require("request")
   .defaults({ json: true });
 
 function getTotal(cb) {
-  const url = `${URL}&pageSize=4&pageIndex=1`
+  const url = `${URL}&pageIndex=1`
   request(url, (err, _, {total, ps})=> {
     cb(null, total, ps);
   })
@@ -52,23 +52,22 @@ function urlsToTasks(pageCount){
   })
 }
 
-function getPages(tasks, cb){
-  parallelLimit(
-    tasks,
-    4,
-    (err, results)=>{
-      const rules = [].concat(...results);
-      console.log(JSON.stringify(rules,null,2));
-    }
-  )
-}
-
 waterfall([
   getTotal,
   asyncify(getPageCount),
-  asyncify(urlsToTasks),
-  getPages
-]);
+  asyncify(urlsToTasks)
+],
+  (err, tasks)=>{
+    parallelLimit(
+      tasks,
+      4,
+      (err, results)=>{
+        const rules = [].concat(...results);
+        console.log(JSON.stringify(rules,null,2));
+      }
+    )
+  }
+);
 
 // let pageIndex = 0;
 // const results = [];
