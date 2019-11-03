@@ -52,20 +52,23 @@ function urlsToTasks(pageCount){
   })
 }
 
+function getPages(tasks, cb){
+  parallelLimit(
+    tasks,
+    4,
+    (err, results)=>cb(null, results)
+  )
+}
+
 waterfall([
   getTotal,
   asyncify(getPageCount),
-  asyncify(urlsToTasks)
+  asyncify(urlsToTasks),
+  getPages
 ],
-  (err, tasks)=>{
-    parallelLimit(
-      tasks,
-      4,
-      (err, results)=>{
-        const rules = [].concat(...results);
-        console.log(JSON.stringify(rules,null,2));
-      }
-    )
+  (err, results)=>{
+    const rules = [].concat(...results);
+    console.log(JSON.stringify(rules,null,2));
   }
 );
 
