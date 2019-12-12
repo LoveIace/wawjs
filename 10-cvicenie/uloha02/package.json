@@ -7,9 +7,12 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/bom/"
+    "test": "mocha --color test/bom/"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.2.2"
+  }
 }
